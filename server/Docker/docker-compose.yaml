@@ -1,0 +1,15 @@
+services:
+  node:
+    image: node:20
+    command: npm run start
+    restart: always
+    working_dir: /server
+    volumes:
+      - ../:/server
+      - ../../.env:/server/.env
+    environment:
+      - ENV_PATH=../.env
+    ports:
+      - "5000:5000"
+
+
