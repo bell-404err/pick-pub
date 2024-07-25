@@ -1,14 +1,14 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+require('dotenv').config();
+const PORT = process.env.PORT || 3000;
+console.log('Current working directory:', process.cwd());
 
-//в докере не нужно будет писать такой путь, файл будет лежать рядом
-require('dotenv').config({ path: process.env.ENV_PATH  || `${__dirname}/../../.env` })
-const PORT = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+    res.send('Hello World!');
+});
 
-app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}`)
-})
+const server = app.listen(PORT, () => {
+    console.log(`Example app listening on port ${PORT}`);
+});
