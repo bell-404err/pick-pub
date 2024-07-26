@@ -1,8 +1,8 @@
 /.idea/
 
 node_modules
+.env
 
 /server/Issues_and_fixes
 /server/Docker/data/
-/server/.env
 
