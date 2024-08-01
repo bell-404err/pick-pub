@@ -1,21 +1,24 @@
 include ../.env
 
 # .env' path
-COMPOSE_CONFIG=--env-file ../.env
+COMPOSE_CONFIG=--env-file ../.env -f docker-compose.$(MODE).yaml
+# Default - dev, other - prod. Example: MODE=prod make up
+MODE ?= dev
+
 
 # Start containers
-up: docker-compose.yaml
-	docker-compose ${COMPOSE_CONFIG} up -d
+up:
+	docker-compose ${COMPOSE_CONFIG} up -d --build
 
 # Stop and Delete all containers
-down: docker-compose.yaml
+down:
 	docker-compose ${COMPOSE_CONFIG} down
 
 # Stop and Delete all containers and volume's data
-clear: docker-compose.yaml
+clear:
 	docker-compose ${COMPOSE_CONFIG} down -v
 
 # Clear Install: Delete and Install again all dependencies
-install: docker-compose.yaml
+install:
 	docker-compose ${COMPOSE_CONFIG} run --rm server npm ci
 	docker-compose ${COMPOSE_CONFIG} down
