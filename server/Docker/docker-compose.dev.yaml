@@ -4,7 +4,7 @@ services:
   server:
     image: node:20
     container_name: server-app
-    command: sh -c "npx prisma migrate deploy && npm run start:dev"
+    command: npm run start:dev
     restart: always
     working_dir: /server
     volumes:
@@ -31,11 +31,6 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - pp
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d ${POSTGRES_DB} -U ${POSTGRES_USER}"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
 
 networks:
   pp:

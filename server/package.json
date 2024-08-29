@@ -2,11 +2,17 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.ts",
   "scripts": {
     "start:dev": "nodemon --config nodemon.dev.json",
     "start:prod": "tsc && nodemon --config nodemon.prod.json"
   },
+  "prisma": {
+    "seed": "npx tsx prisma/seed.ts",
+    "migrate": "npx prisma migrate dev",
+    "postmigrate": "npx prisma db seed"
+  },
+  "type": "commonjs",
   "author": "",
   "license": "ISC",
   "devDependencies": {

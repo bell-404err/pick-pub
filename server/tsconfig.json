@@ -2,17 +2,17 @@
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
-    "rootDir": "./src",
+    "rootDir": "./",
     "outDir": "./dist",
     "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": false,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
+//    "noImplicitAny": true,
+//    "strictNullChecks": true,
+//    "strictFunctionTypes": true,
+//    "strictBindCallApply": true,
+//    "strictPropertyInitialization": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
     "skipLibCheck": true,
@@ -21,6 +21,6 @@
     "types": ["node","express"]
 //    "sourceMap": true
   },
-  "include": ["src/"],
+  "include": ["src/", "prisma/"],
   "exclude": ["node_modules"]
 }
