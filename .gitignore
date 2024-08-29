@@ -3,6 +3,7 @@
 node_modules
 dist
 .env
+qodana.yaml
 
 /server/Issues_and_fixes
 /server/ts-issues
