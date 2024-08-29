@@ -7,4 +7,4 @@ dist
 /server/Issues_and_fixes
 /server/ts-issues
 /server/Docker/data/
-
+/server/src/*.js

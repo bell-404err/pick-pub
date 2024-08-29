@@ -8,7 +8,7 @@ MODE ?= dev
 
 # Start containers
 up:
-	docker-compose ${COMPOSE_CONFIG} up -d --build
+	docker-compose ${COMPOSE_CONFIG} up -d
 
 # Stop and Delete all containers
 down:
