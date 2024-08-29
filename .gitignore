@@ -1,3 +1,11 @@
 /.idea/
-.env
+
 node_modules
+dist
+.env
+qodana.yaml
+
+/server/Issues_and_fixes
+/server/ts-issues
+/server/Docker/data/
+/server/src/*.js

@@ -1,14 +1,15 @@
-const express = require('express')
-const app = express()
-
-//в докере не нужно будет писать такой путь, файл будет лежать рядом
-require('dotenv').config({ path: process.env.ENV_PATH  || `${__dirname}/../../.env` })
-const PORT = process.env.PORT || 5000;
-
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-
-app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}`)
-})
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var dotenv_1 = require("dotenv");
+(0, dotenv_1.config)();
+var app = (0, express_1.default)();
+var PORT = process.env.PORT || 3000;
+console.log('Current working directory:', process.cwd());
+app.get('/', function (req, res) {
+    res.send('Hello World!');
+});
+var server = app.listen(PORT, function () {
+    console.log("Example app listening on port ".concat(PORT));
+});
+exports.default = server;

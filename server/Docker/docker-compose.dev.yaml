@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  server:
+    image: node:20
+    container_name: server-app
+    command: npm run start:dev
+    restart: always
+    working_dir: /server
+    volumes:
+      - ../:/server
+      - ../.env:/server/.env
+    ports:
+      - ${PORT}:${PORT}
+    depends_on:
+      - postgresql
+    networks:
+      - pp
+
+  postgresql:
+    image: postgres:16
+    container_name: psql-app
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - ${DB_PORT}:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - pp
+
+networks:
+  pp:
+
+volumes:
+  postgres_data:
