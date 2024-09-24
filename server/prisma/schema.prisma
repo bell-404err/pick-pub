@@ -8,13 +8,15 @@ datasource db {
 }
 
 model User {
-  userId      Int     @id @default(autoincrement())
-  userName    String
-  userEmail   String  @unique
-  password    String
-  role        Role    @default(USER)
-  carts Cart[]
-  orders Order[]
+  userId         Int            @id @default(autoincrement())
+  userName       String
+  userEmail      String         @unique
+  password       String
+  role           Role           @default(USER)
+  carts          Cart[]
+  orders         Order[]
+  refreshTokens  RefreshToken[]
+  activationLink String
 }
 
 model DishesCategories {
@@ -31,40 +33,48 @@ model Dishes {
   dishesPrice       Int
   dishesRelationTo  DishesCategories @relation(fields: [dishesCategoryId], references: [id])
   dishesPicture     String
-  carts Cart[]
-  orderedItems OrderedItem[]
+  carts             Cart[]
+  orderedItems      OrderedItem[]
 }
 
 model Cart {
-  id Int @id @default(autoincrement())
-  userId Int
-  dishId Int
-  quantity Int @default(1)
-  user User @relation(fields: [userId], references: [userId])
-  dish Dishes @relation(fields: [dishId], references: [dishesId])
+  id       Int    @id @default(autoincrement())
+  userId   Int
+  dishId   Int
+  quantity Int    @default(1)
+  user     User   @relation(fields: [userId], references: [userId])
+  dish     Dishes @relation(fields: [dishId], references: [dishesId])
 }
 
 model Order {
-  id          Int          @id @default(autoincrement())
-  userId      Int
-  totalAmount Int
-  status      String        @default("pending")
-  createdAt   DateTime      @default(now())
-  updateAt    DateTime      @updatedAt
-  user        User          @relation(fields: [userId], references: [userId])
+  id           Int           @id @default(autoincrement())
+  userId       Int
+  totalAmount  Int
+  status       String        @default("pending")
+  createdAt    DateTime      @default(now())
+  updateAt     DateTime      @updatedAt
+  user         User          @relation(fields: [userId], references: [userId])
   orderedItems OrderedItem[]
 }
 
 model OrderedItem {
-  id        Int     @id @default(autoincrement())
-  orderId   Int
-  dishId    Int
-  quantity  Int
-  cost      Int
-  order     Order   @relation(fields: [orderId], references: [id])
-  dish      Dishes  @relation(fields: [dishId], references: [dishesId])
+  id       Int    @id @default(autoincrement())
+  orderId  Int
+  dishId   Int
+  quantity Int
+  cost     Int
+  order    Order  @relation(fields: [orderId], references: [id])
+  dish     Dishes @relation(fields: [dishId], references: [dishesId])
 }
 
+model RefreshToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  userId    Int
+  user      User     @relation(fields: [userId], references: [userId])
+}
 
 enum Role {
   USER

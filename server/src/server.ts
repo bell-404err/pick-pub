@@ -2,6 +2,14 @@ import express, { Express, Request, Response } from 'express';
 import { config } from 'dotenv';
 import { PrismaClient } from '@prisma/client';
 
+import router from "./router/router.ts";
+
+
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+// import cors from "cors";
+// import cookieParser from "cookie-parser";
+
 config();
 const prisma = new PrismaClient();
 
@@ -9,6 +17,10 @@ const app: Express = express();
 const PORT: string | number = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(cors());
+app.use(cookieParser());
+app.use('/api', router);
+
 
 app.get('/', (req: Request, res: Response): void => {
     const users = prisma.user.findMany();

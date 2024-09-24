@@ -17,6 +17,7 @@
     "alwaysStrict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
     "typeRoots": ["./node_modules/@types"],
     "types": ["node","express"]
 //    "sourceMap": true
